@@ -1,0 +1,12 @@
+.grid-square {
+  display: grid;
+  background-color: rgb(0, 247, 255);
+  border-style: solid;
+  border-color: azure;
+  align-items: center;
+  justify-content: center;
+}
+
+.number {
+  color: blue;
+}
