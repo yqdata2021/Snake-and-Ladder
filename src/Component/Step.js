@@ -1,16 +1,27 @@
 import "./Step.css";
-import React from "react";
+import React, { useState } from "react";
 
-function Step() {
-  let step = 1;
+function Step(props) {
+  const [step, setStep] = useState(0);
+  const onPlus = () => {
+    if (step >= Math.sqrt(props.data.length)) return;
+    setStep((prevState) => prevState + 1);
+    props.onStepChange(step);
+  };
+  const onMinus = () => {
+    if (step === 0) return;
+    setStep((prevState) => prevState - 1);
+    props.onStepChange(step);
+  };
+
   return (
     <React.Fragment>
-      <div>
-        <button type="submit" className="button-prev">
+      <div className="form">
+        <button className="button-prev" onClick={onMinus}>
           Prev
         </button>
         <p className="step">{step}</p>
-        <button type="submit" className="button-next">
+        <button className="button-next" onClick={onPlus}>
           Next
         </button>
       </div>

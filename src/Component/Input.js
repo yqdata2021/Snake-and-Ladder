@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Input.css";
 
-function Input() {
-  let data = "";
+function Input(props) {
+  const [enteredData, setEnteredData] = useState("");
+  const dataChangeHandler = (event) => {
+    setEnteredData(event.target.value);
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    props.onSaveInputData(enteredData);
+  };
 
   return (
-    <React.Fragment>
+    <form onSubmit={onSubmitHandler}>
       <p>Paste Your Input Board Here:</p>
-      <textarea type="box" placeholder="Input Box" className="Input"></textarea>
+      <textarea
+        type="box"
+        placeholder="Input Box"
+        className="Input"
+        onChange={dataChangeHandler}
+      ></textarea>
       <button type="submit" className="button">
         Set Input
       </button>
-    </React.Fragment>
+    </form>
   );
 }
 
