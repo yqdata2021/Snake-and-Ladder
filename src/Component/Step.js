@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 function Step(props) {
   const [step, setStep] = useState(0);
   const onPlus = () => {
-    if (step >= Math.sqrt(props.data.length)) return;
+    if (step >= props.max) return;
     setStep((prevState) => prevState + 1);
   };
   const onMinus = () => {

@@ -2,17 +2,24 @@ import "./GridSquare.css";
 import { useState } from "react";
 
 function GridSquare(props) {
-  const [borderColor, setBorderColor] = useState("azure");
+  console.log(props.map);
+  let borderColor = props.map.has(props.row + " " + props.col)
+    ? "red"
+    : "azure";
   const style = {
     backgroundColor: props.color,
     borderColor: borderColor,
   };
 
   const handleMouseEnter = () => {
-    setBorderColor("red");
+    const cor = {
+      row: props.row,
+      col: props.col,
+    };
+    props.onEnlighten(cor);
   };
   const handleMouseLeave = () => {
-    setBorderColor("azure");
+    props.onEnlighten({});
   };
 
   return (

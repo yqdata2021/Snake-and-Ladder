@@ -1,7 +1,9 @@
 import GridSquare from "./GridSquare";
 import "./Graph.css";
+import { useState } from "react";
 
 function Graph(props) {
+  const [lightMap, setLightMap] = useState(new Set());
   // ----------------- set up block number -----------------
   let n = Math.sqrt(props.data.length);
   let style = {
@@ -34,12 +36,26 @@ function Graph(props) {
       map[cor[0] + " " + cor[1]].push([i, j]);
     }
   }
-
+  const englightenHandler = (cor) => {
+    // updating light map
+    setLightMap(new Set());
+    setLightMap((x) => {
+      if (map[cor.row + " " + cor.col]) {
+        let arr = map[cor.row + " " + cor.col];
+        x.add(cor.row + " " + cor.col);
+        for (let i = 0; i < arr.length; i++) {
+          x.add(arr[i][0] + " " + arr[i][1]);
+        }
+        return x;
+      }
+    });
+  };
   //  --------------- Determin needed steps with BFS ---------------
   const coordinates = [];
   const solve = (board) => {
     const visited = new Set();
     const q = [];
+    let count = 0;
     q.push(1);
     coordinates.push([intToCoordinate(1)]);
     visited.add(1);
@@ -58,8 +74,9 @@ function Graph(props) {
           arr.push([res[0], res[1]]);
         }
       }
+      count++;
       coordinates.push(arr);
-      if (visited.has(n * n)) break;
+      if (visited.has(n * n)) return count;
     }
   };
   function intToCoordinate(x) {
@@ -72,12 +89,13 @@ function Graph(props) {
     }
     return [row, column];
   }
-  solve(processedData);
+  const max = solve(processedData);
+  props.onMaxCalc(max);
 
   // ----------------- set up color gradient ----------------
   const colorGradient = [];
-  let r = 255;
-  let g = 255;
+  let r = 120;
+  let g = 150;
   let b = 0;
   const diff = Math.trunc(220 / n / n);
   for (let i = 0; i < n * n; i++) {
@@ -113,8 +131,10 @@ function Graph(props) {
           val={mark[row][col]}
           color={colorBoard[row][col]}
           key={Math.random()}
-          map={map}
-          data={processedData}
+          row={row}
+          col={col}
+          onEnlighten={englightenHandler}
+          map={lightMap}
         />
       );
     }
