@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Graph from "./Component/Graph";
 import Input from "./Component/Input";
@@ -11,6 +11,7 @@ function App() {
   const [show, setShow] = useState(false);
   const [showArrow, setShowArrow] = useState(false);
   const [max, setMax] = useState(0);
+
   const handleInput = (enteredData) => {
     setData(
       enteredData
@@ -39,7 +40,7 @@ function App() {
       ) : (
         ""
       )}
-      {show && showArrow ? <Arrow /> : ""}
+      {show && showArrow ? <Arrow data={data} /> : ""}
     </React.Fragment>
   );
 }

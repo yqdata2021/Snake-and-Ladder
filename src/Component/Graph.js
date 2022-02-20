@@ -4,21 +4,6 @@ import { useEffect, useState } from "react";
 
 function Graph(props) {
   const [lightMap, setLightMap] = useState(new Set());
-  // ------------- Set up Arrows --------------------
-  useEffect(() => {
-    console.log("run");
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        let coords = getPos(document.getElementById(`${i} ${j}`));
-      }
-    }
-  }, []);
-
-  function getPos(el) {
-    let rect = el.getBoundingClientRect();
-    return { x: rect.left, y: rect.top };
-  }
-
   // ----------------- set up block number -----------------
   let n = Math.sqrt(props.data.length);
   let style = {
@@ -41,13 +26,16 @@ function Graph(props) {
 
   // ---------------- build adjancy list for highlighting ----------
   let map = {};
+
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       if (processedData[i][j] === -1) continue;
       let cor = intToCoordinate(processedData[i][j]);
       if (!map[i + " " + j]) map[i + " " + j] = [];
+
       if (!map[cor[0] + " " + cor[1]]) map[cor[0] + " " + cor[1]] = [];
       map[i + " " + j].push(cor);
+
       map[cor[0] + " " + cor[1]].push([i, j]);
     }
   }
@@ -110,8 +98,8 @@ function Graph(props) {
   // ----------------- set up color gradient ----------------
   const colorGradient = [];
   let r = 120;
-  let g = 150;
-  let b = 0;
+  let g = 100;
+  let b = 30;
   const diff = Math.trunc(220 / n / n);
   for (let i = 0; i < n * n; i++) {
     colorGradient.push(`rgb(${r},${g},${b})`);

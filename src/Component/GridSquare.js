@@ -30,7 +30,7 @@ function GridSquare(props) {
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
     >
-      <p className="number" id={`${props.row} ${props.col}`}>
+      <p className="number" id={`${props.val}`}>
         {props.val}
       </p>
     </div>
