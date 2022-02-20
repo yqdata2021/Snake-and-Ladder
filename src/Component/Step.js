@@ -1,18 +1,21 @@
 import "./Step.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Step(props) {
   const [step, setStep] = useState(0);
+  console.log(`from top: ${step}`);
   const onPlus = () => {
     if (step >= Math.sqrt(props.data.length)) return;
     setStep((prevState) => prevState + 1);
-    props.onStepChange(step);
   };
   const onMinus = () => {
     if (step === 0) return;
     setStep((prevState) => prevState - 1);
-    props.onStepChange(step);
   };
+
+  useEffect(() => {
+    props.onStepChange(step);
+  }, [step]);
 
   return (
     <React.Fragment>

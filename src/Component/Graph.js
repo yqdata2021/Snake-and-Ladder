@@ -3,9 +3,7 @@ import "./Graph.css";
 import { useEffect } from "react";
 
 function Graph(props) {
-  useEffect(() => {
-    console.log("eee");
-  }, [props.step]);
+  console.log(props.step);
   // ----------------- set up block number -----------------
   let n = Math.sqrt(props.data.length);
   let style = {
@@ -33,10 +31,7 @@ function Graph(props) {
     const q = [];
     q.push(1);
     coordinates.push([intToCoordinate(1)]);
-    console.log(coordinates);
     visited.add(1);
-    let count = 0;
-
     while (q.length > 0) {
       const size = q.length;
       const arr = [];
@@ -52,7 +47,6 @@ function Graph(props) {
           arr.push([res[0], res[1]]);
         }
       }
-      count++;
       coordinates.push(arr);
       if (visited.has(n * n)) break;
     }
@@ -92,7 +86,6 @@ function Graph(props) {
       colorBoard[i][j] = "grey";
     }
   }
-
   for (let i = 0; i <= props.step; i++) {
     const pickedColor = colorGradient[i * n];
     for (let j = 0; j < coordinates[i].length; j++) {
@@ -114,6 +107,12 @@ function Graph(props) {
       );
     }
   }
+
+  useEffect(() => {
+    return () => {
+      console.log(props.step);
+    };
+  }, [props.step]);
 
   return (
     <div className="grid" style={style}>

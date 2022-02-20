@@ -18,14 +18,14 @@ function App() {
     );
     setShow(true);
   };
-  const stepChangeHandler = (enteredStep) => setStep(enteredStep);
+  const stepChangHandler = (enteredStep) => setStep(enteredStep);
 
   return (
     <React.Fragment>
       <h1>Snake and Ladder Visualizer</h1>
       <Input onSaveInputData={handleInput}></Input>
       {show ? <Graph data={data} step={step}></Graph> : ""}
-      {show ? <Step onStepChange={stepChangeHandler} data={data}></Step> : ""}
+      {show ? <Step onStepChange={stepChangHandler} data={data}></Step> : ""}
     </React.Fragment>
   );
 }
