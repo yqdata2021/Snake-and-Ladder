@@ -5,9 +5,10 @@ import Input from "./Component/Input";
 import Step from "./Component/Step";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([[1]]);
   const [step, setStep] = useState(0);
-  const handleInput = (enteredData) =>
+  const [show, setShow] = useState(false);
+  const handleInput = (enteredData) => {
     setData(
       enteredData
         .replaceAll('"', "")
@@ -15,14 +16,16 @@ function App() {
         .replaceAll("]", "")
         .split(",")
     );
+    setShow(true);
+  };
   const stepChangeHandler = (enteredStep) => setStep(enteredStep);
 
   return (
     <React.Fragment>
       <h1>Snake and Ladder Visualizer</h1>
       <Input onSaveInputData={handleInput}></Input>
-      <Graph data={data} step={step}></Graph>
-      <Step onStepChange={stepChangeHandler} data={data}></Step>
+      {show ? <Graph data={data} step={step}></Graph> : ""}
+      {show ? <Step onStepChange={stepChangeHandler} data={data}></Step> : ""}
     </React.Fragment>
   );
 }

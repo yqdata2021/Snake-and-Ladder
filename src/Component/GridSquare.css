@@ -1,6 +1,6 @@
 .grid-square {
+  box-sizing: border-box;
   display: grid;
-
   border-style: solid;
   border-color: azure;
   align-items: center;
@@ -8,5 +8,6 @@
 }
 
 .number {
-  color: blue;
+  color: azure;
+  font-weight: bold;
 }
