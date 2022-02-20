@@ -1,3 +1,8 @@
 .button {
   display: block;
 }
+textarea {
+  width: 350px;
+  height: 160px;
+  resize: none;
+}

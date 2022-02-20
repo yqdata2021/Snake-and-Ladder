@@ -1,9 +1,24 @@
 import GridSquare from "./GridSquare";
 import "./Graph.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Graph(props) {
   const [lightMap, setLightMap] = useState(new Set());
+  // ------------- Set up Arrows --------------------
+  useEffect(() => {
+    console.log("run");
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        let coords = getPos(document.getElementById(`${i} ${j}`));
+      }
+    }
+  }, []);
+
+  function getPos(el) {
+    let rect = el.getBoundingClientRect();
+    return { x: rect.left, y: rect.top };
+  }
+
   // ----------------- set up block number -----------------
   let n = Math.sqrt(props.data.length);
   let style = {

@@ -2,8 +2,6 @@ import "./GridSquare.css";
 import { useState } from "react";
 
 function GridSquare(props) {
-  console.log(props.map);
-
   let borderColor;
   if (props.map && props.map.has(props.row + " " + props.col))
     borderColor = "red";
@@ -32,7 +30,9 @@ function GridSquare(props) {
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
     >
-      <p className="number">{props.val}</p>
+      <p className="number" id={`${props.row} ${props.col}`}>
+        {props.val}
+      </p>
     </div>
   );
 }
