@@ -3,9 +3,12 @@ import { useState } from "react";
 
 function GridSquare(props) {
   console.log(props.map);
-  let borderColor = props.map.has(props.row + " " + props.col)
-    ? "red"
-    : "azure";
+
+  let borderColor;
+  if (props.map && props.map.has(props.row + " " + props.col))
+    borderColor = "red";
+  else borderColor = "azure";
+
   const style = {
     backgroundColor: props.color,
     borderColor: borderColor,
