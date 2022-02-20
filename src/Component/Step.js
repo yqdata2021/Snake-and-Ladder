@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 function Step(props) {
   const [step, setStep] = useState(0);
-  console.log(`from top: ${step}`);
   const onPlus = () => {
     if (step >= Math.sqrt(props.data.length)) return;
     setStep((prevState) => prevState + 1);
