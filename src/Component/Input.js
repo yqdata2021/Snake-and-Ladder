@@ -17,7 +17,7 @@ function Input(props) {
       <p>Paste Your Input Board Here:</p>
       <textarea
         type="box"
-        placeholder="Input Box"
+        placeholder="Input Here"
         className="Input"
         onChange={dataChangeHandler}
       ></textarea>

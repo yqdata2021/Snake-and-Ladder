@@ -117,8 +117,9 @@ function Graph(props) {
       colorBoard[i][j] = "grey";
     }
   }
+  console.log(colorGradient);
   for (let i = 0; i <= props.step; i++) {
-    const pickedColor = colorGradient[i * n];
+    const pickedColor = colorGradient[Math.trunc((n * n * i) / (max + 1))];
     for (let j = 0; j < coordinates[i].length; j++) {
       colorBoard[coordinates[i][j][0]][coordinates[i][j][1]] = pickedColor;
     }

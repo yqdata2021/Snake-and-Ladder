@@ -20,11 +20,11 @@ function Step(props) {
     <React.Fragment>
       <div className="form">
         <button className="button-prev" onClick={onMinus}>
-          Prev
+          Prev Step
         </button>
         <p className="step">{step}</p>
         <button className="button-next" onClick={onPlus}>
-          Next
+          Next Step
         </button>
       </div>
     </React.Fragment>
