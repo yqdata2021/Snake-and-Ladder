@@ -12,6 +12,7 @@ function App() {
   const [showArrow, setShowArrow] = useState(false);
   const [max, setMax] = useState(0);
   const [showSample, setShowSample] = useState(false);
+  const [checkbox, setCheckbox] = useState(false);
 
   const handleInput = (enteredData) => {
     setData(
@@ -22,10 +23,15 @@ function App() {
         .split(",")
     );
     setShow(true);
+    setShowArrow(false);
+    setCheckbox(false);
   };
   const stepChangHandler = (enteredStep) => setStep(enteredStep);
   const calcHandler = (max) => setMax(max);
-  const toggleHandler = () => setShowArrow((v) => !v);
+  const toggleHandler = () => {
+    setShowArrow((v) => !v);
+    setCheckbox((v) => !v);
+  };
   const showSampleHandler = () => setShowSample((v) => !v);
 
   return (
@@ -48,6 +54,8 @@ function App() {
             Sample Input 2:
             [[-1,-1,-1,46,47,-1,-1,-1],[51,-1,-1,63,-1,31,21,-1],[-1,-1,26,-1,-1,38,-1,-1],[-1,-1,11,-1,14,23,56,57],[11,-1,-1,-1,49,36,-1,48],[-1,-1,-1,33,56,-1,57,21],[-1,-1,-1,-1,-1,-1,2,-1],[-1,-1,-1,8,3,-1,6,56]]
           </p>
+
+          <p>Sample Input 3: [[1,1,-1],[1,1,1],[-1,1,1]]</p>
         </div>
       ) : (
         ""
@@ -56,7 +64,12 @@ function App() {
       <Input onSaveInputData={handleInput}></Input>
       {show ? (
         <div>
-          <input type="checkbox" className="checkbox" onClick={toggleHandler} />
+          <input
+            type="checkbox"
+            className="checkbox"
+            onClick={toggleHandler}
+            checked={checkbox}
+          />
           <span>Show Snakes and Ladders</span>
           <Graph data={data} step={step} onMaxCalc={calcHandler}></Graph>
           <Step onStepChange={stepChangHandler} data={data} max={max}></Step>

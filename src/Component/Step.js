@@ -13,6 +13,10 @@ function Step(props) {
   };
 
   useEffect(() => {
+    setStep(0);
+  }, [props.data]);
+
+  useEffect(() => {
     props.onStepChange(step);
   }, [step]);
 

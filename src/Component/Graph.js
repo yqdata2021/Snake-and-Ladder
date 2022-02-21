@@ -81,6 +81,7 @@ function Graph(props) {
       coordinates.push(arr);
       if (visited.has(n * n)) return count;
     }
+    return count;
   };
   function intToCoordinate(x) {
     let row = n - 1 - Math.trunc((x - 1) / n);
@@ -117,9 +118,10 @@ function Graph(props) {
       colorBoard[i][j] = "grey";
     }
   }
-  console.log(colorGradient);
+  console.log(coordinates);
   for (let i = 0; i <= props.step; i++) {
     const pickedColor = colorGradient[Math.trunc((n * n * i) / (max + 1))];
+    if (i >= coordinates[i].length) break;
     for (let j = 0; j < coordinates[i].length; j++) {
       colorBoard[coordinates[i][j][0]][coordinates[i][j][1]] = pickedColor;
     }
