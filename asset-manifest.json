@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Snake-and-Ladder/static/css/main.693b6d82.css",
+    "main.js": "/Snake-and-Ladder/static/js/main.e000f5b4.js",
+    "index.html": "/Snake-and-Ladder/index.html",
+    "main.693b6d82.css.map": "/Snake-and-Ladder/static/css/main.693b6d82.css.map",
+    "main.e000f5b4.js.map": "/Snake-and-Ladder/static/js/main.e000f5b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.693b6d82.css",
+    "static/js/main.e000f5b4.js"
+  ]
+}
